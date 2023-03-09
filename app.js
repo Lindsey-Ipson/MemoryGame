@@ -75,9 +75,7 @@ function handleCardClick(event) {
   if (cardsFlipped === 1) {
     firstChoice = event.target;
     firstChoice.style.backgroundColor = event.target.classList.value;
-  }
-
-  else if (cardsFlipped === 2) {
+  } else if (cardsFlipped === 2) {
 
     if (event.target.style.backgroundColor !== '') {
       event.target.style.backgroundColor = '';
@@ -94,6 +92,13 @@ function handleCardClick(event) {
     if (firstChoice.style.backgroundColor === secondChoice.style.backgroundColor) {
       firstChoice.removeEventListener('click', handleCardClick);
       secondChoice.removeEventListener('click', handleCardClick);
+
+      const divArr = Array.from(document.querySelectorAll('#game div'));
+
+      if (divArr.every(function(val) {
+        return val.style.backgroundColor === "red" || val.style.backgroundColor === "blue" || val.style.backgroundColor === "green" || val.style.backgroundColor === "orange" || val.style.backgroundColor === "purple" 
+      })) {alert("Congrats! You've won!")};
+  
       cardsFlipped = 0;
       return;
     }
@@ -107,10 +112,10 @@ function handleCardClick(event) {
         }
       , 1000 )}
     } 
-
   }
-
 }
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
+
+
